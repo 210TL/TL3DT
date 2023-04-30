@@ -1,4 +1,3 @@
-import { json } from '@sveltejs/kit';
 import { PrismaClient } from '@prisma/client';
 import type { Actions } from './$types';
 
@@ -10,14 +9,14 @@ type reqData = {
 };
 
 export const actions = {
-	default: async ({ cookies, request }) => {
+	default: async ({ request }) => {
 		const res = await request.text();
 		const data: reqData[] = [];
 		res.split('&').forEach((elem) => {
-			let bsplitter = elem.split('=')[0];
-			let asplitter = elem.split('=')[1];
-			let tempObject: any = {};
-			tempObject[bsplitter] = Number(asplitter);
+			const beforeSplitter = elem.split('=')[0];
+			const afterSplitter = elem.split('=')[1];
+			const tempObject = {};
+			tempObject[beforeSplitter] = Number(afterSplitter); // We know there will always be a number here
 			data.push(tempObject);
 		});
 
