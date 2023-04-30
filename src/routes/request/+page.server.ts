@@ -1,9 +1,17 @@
 import prisma from '$lib/prisma';
 import type { Actions } from './$types';
+import { redirect } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
 
 type reqData = {
 	userID: number;
 	id: number;
+};
+
+export const load: PageServerLoad = async (event) => {
+	const session = await event.locals.getSession();
+	if (!session?.user) throw redirect(303, "/");
+	return {};
 };
 
 export const actions = {

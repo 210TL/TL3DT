@@ -5,7 +5,6 @@ import { DISCORD_ID, DISCORD_SECRET, GITHUB_ID, GITHUB_SECRET } from "$env/stati
 
 export const handle = SvelteKitAuth({
   providers: [
-	GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }),
 	Discord({ clientId: DISCORD_ID, clientSecret: DISCORD_SECRET })
 ],
 })
