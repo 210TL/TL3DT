@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '$lib/prisma';
 import type { Actions } from './$types';
-
-const prisma = new PrismaClient();
 
 type reqData = {
 	userID: number;
@@ -27,7 +25,6 @@ export const actions = {
 			console.log('User has requested print "' + item.name + '" with ID ' + item.id);
 		});
 
-		prisma.$disconnect();
 		return { success: true };
 	}
 } satisfies Actions;
