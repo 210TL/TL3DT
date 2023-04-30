@@ -1,5 +1,6 @@
 <script>
     export let name = '';
+    export let id = 0;
     export let src = '';
 </script>
 
@@ -7,4 +8,5 @@
     <img {src} alt="Photo of {name}">
     <h1>{name}</h1>
     <button>Request</button>
+    {id}
 </div>

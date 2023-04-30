@@ -1,11 +1,16 @@
 import { json } from '@sveltejs/kit';
-import * as database from '$lib/server/database.js';
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export async function POST({ request, cookies }) {
-	const { description } = await request.json();
+	const { id } = await request.json();
 
-	const userid = cookies.get('userid');
-	const { id } = await database.createTodo({ userid, description });
+    const postList = prisma.posts.findMany();
 
-	return json({ id }, { status: 201 });
+    (await postList).forEach(item => {
+        if(item.id !== id) return;
+    })
+
+	return json({ }, { status: 201 });
 }
