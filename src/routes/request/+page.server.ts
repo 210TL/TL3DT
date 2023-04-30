@@ -15,7 +15,7 @@ export const actions = {
 		res.split('&').forEach((elem) => {
 			const beforeSplitter = elem.split('=')[0];
 			const afterSplitter = elem.split('=')[1];
-			const tempObject = {};
+			const tempObject: any = {};
 			tempObject[beforeSplitter] = Number(afterSplitter); // We know there will always be a number here
 			data.push(tempObject);
 		});
