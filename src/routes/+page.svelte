@@ -1,6 +1,6 @@
 <script>
 	import { PrismaClient } from '@prisma/client';
-    import Post from "./Post.svelte";
+    import Post from "$lib/components/Post.svelte";
     //TODO: Get post list dynamically
     const prisma = new PrismaClient();
     /**
@@ -14,12 +14,10 @@
         })
     });
 
-    console.log(posts)
-
 </script>
 
 <div class="grid grid-flow-col-dense">
-    {#each posts as { name, src }}
-        <Post {name} {src} />
+    {#each posts as { name, id, image_src }}
+        <Post {name} {id} {image_src} />
     {/each}
 </div>

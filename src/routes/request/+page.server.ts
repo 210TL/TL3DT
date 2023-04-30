@@ -20,7 +20,6 @@ export const actions = {
             tempObject[bsplitter] = Number(asplitter);
             data.push(tempObject)
         })
-        console.log(data)
 
         const postList = prisma.posts.findMany();
 
