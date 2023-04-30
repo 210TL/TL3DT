@@ -2,10 +2,14 @@ import prisma from '$lib/prisma';
 
 import type { PageServerLoad } from './$types';
 
-export const load = (async () => {
-	const response = await prisma.posts.findMany();
+import { redirect } from "@sveltejs/kit";
+
+export const load: PageServerLoad = async ({ locals }) => {
+    const response = await prisma.posts.findMany();
 
 	prisma.$disconnect();
 
-	return { feed: response };
-}) satisfies PageServerLoad;
+	return {
+        feed: response
+	};
+};
