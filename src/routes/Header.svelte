@@ -13,6 +13,7 @@
             'route': '/login'
         }
     ]
+
 </script>
 
 <div class="nav bg-slate-500 p-5 grid grid-flow-col">
