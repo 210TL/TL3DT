@@ -11,10 +11,10 @@ datasource db {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model posts {
   id          Int     @id(map: "posts_id") @default(autoincrement())
-  name        String? @db.Char
+  name        String? @db.VarChar
   author      Int?
-  description String? @db.Char
-
+  description String? @db.VarChar
+  image_src   String? @db.VarChar
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -24,5 +24,4 @@ model users {
   username String? @db.Char
   name     String? @db.Char
   discord  Int?
-
 }
