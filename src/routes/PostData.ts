@@ -1,7 +1,6 @@
 export interface PostData {
-    id: number | null;
-    name: string | null;
-    author: number | null;
-    description: string | null;
-    image_src: string | null;
+    id: number | undefined;
+    name: string | undefined;
+    author: number | undefined;
+    description: string | undefined;
 }
