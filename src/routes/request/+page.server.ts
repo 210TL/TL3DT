@@ -8,14 +8,18 @@ type reqData = {
 	id: number;
 };
 
+const session: any = {sessionObj:{}};
+
 export const load: PageServerLoad = async (event) => {
-	const session = await event.locals.getSession();
-	if (!session?.user) throw redirect(303, "/");
-	return {};
+	session.sessionObj = {};
+	const rsession = await event.locals.getSession();
+	if (!rsession?.user) throw redirect(303, "/");
+	session.sessionObj = rsession;
 };
 
 export const actions = {
 	default: async ({ request }) => {
+		if(!session.sessionObj.user) return;
 		const res = await request.text();
 		const data: reqData[] = [];
 		res.split('&').forEach((elem) => {
@@ -30,7 +34,7 @@ export const actions = {
 
 		(await postList).forEach((item) => {
 			if (item.id !== data[1].id) return; // We know the form will always submit data[1] as the ID object
-			console.log('User has requested print "' + item.name + '" with ID ' + item.id);
+			console.log(`User (id ${JSON.stringify(session.sessionObj.user)}) has requested print ${item.name} (id ${item.id})`);
 		});
 
 		return { success: true };
