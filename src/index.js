@@ -1,12 +1,13 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
+const config = require(path.resolve('./config.json'));
 
 const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || config.PORT || 80;
 
 const db = require('./database');
 const fs = require('fs');
@@ -21,8 +22,8 @@ app.get('/', function(req, res) {
 fs.readdirSync(path.resolve('./src/api/')).forEach(fileName => {
 	if(require(path.resolve('./src/api/' + fileName)).route) {
 		const meta = require(path.resolve('./src/api/' + fileName));
-		if(meta.method === 'get') app.get('/api' + meta.route, (req, res) => meta.exec({req, res, db}))
-		if(meta.method === 'post') app.post('/api' + meta.route, (req, res) => meta.exec({req, res, db}))
+		if(meta.method === 'get') app.get('/api' + meta.route, (req, res) => meta.exec({req, res, db, config}))
+		if(meta.method === 'post') app.post('/api' + meta.route, (req, res) => meta.exec({req, res, db, config}))
 		console.log('Added', meta.method, 'route', meta.route);
 	}
 })

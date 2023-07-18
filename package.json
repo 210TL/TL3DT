@@ -4,6 +4,8 @@
   "description": "node server mabobber thingyamabob",
   "main": "src/index.js",
   "scripts": {
+    "setup": "echo Copying config && cp config.json.default config.json && echo Edit config.json then run npm start",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
