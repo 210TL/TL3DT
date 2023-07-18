@@ -27,6 +27,13 @@ function createTable(db) {
     url VARCHAR(50) NOT NULL,
 		description VARCHAR(50) NOT NULL
   );
+  CREATE TABLE users
+  (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    name   VARCHAR(50) NOT NULL,
+		printamount INTEGER NOT NULL,
+		picturelink VARCHAR(50) NOT NULL
+  );
 `);
 }
 
