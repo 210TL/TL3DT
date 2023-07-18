@@ -7,7 +7,10 @@ module.exports = {
 			if (error) {
 				throw new Error(error.message);
 			}
-			console.log(row);
+			list.push(row);
 		});
+		setTimeout(() => {
+			res.send(list);
+		},250);
 	}
 }

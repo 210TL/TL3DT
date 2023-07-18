@@ -35,6 +35,16 @@ function createTable(db) {
 		picturelink VARCHAR(50) NOT NULL
   );
 `);
+db.run(
+	`INSERT INTO prints (authorid, name, url, description) VALUES (?, ?, ?, ?)`,
+	[0, "Cool print", "https://github.com/210tl/tl3dt", "This is a cool print I found!"],
+	function (error) {
+		if (error) {
+			console.error(error.message);
+		}
+		console.log(`Inserted a row with the ID: ${this.lastID}`);
+	}
+);
 }
 
 module.exports = createDbConnection();
